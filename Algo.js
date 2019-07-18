@@ -186,13 +186,95 @@ titleCase("I'm a little tea pot");
 function frankenSplice(arr1, arr2, n) {
     // It's alive. It's alive!
     let res = arr2.slice();
-    for(var i=0;i<arr1.length;i++){
-      res.splice(n,0,arr1[i]);
-      n++;
+    for (var i = 0; i < arr1.length; i++) {
+        res.splice(n, 0, arr1[i]);
+        n++;
     }
     return res;
-  }
-  
-  frankenSplice([1, 2, 3], [4, 5], 1);
+}
 
+frankenSplice([1, 2, 3], [4, 5], 1);
 
+//-----------------------------------------------------------------
+//14
+//Falsy Bouncer
+//Remove all falsy values from an array Falsy values in JavaScript are false, null, 0, "", undefined, and NaN.
+function bouncer(arr) {
+    // Don't show a false ID to this bouncer.
+    var nw = []
+    for (var i = 0; i < arr.length; i++) {
+        if (arr[i]) {
+            nw.push(arr[i])
+        }
+    }
+    return nw;
+}
+
+bouncer([7, "ate", "", false, 9]);
+
+//-----------------------------------------------------------------
+//15
+//Where do I Belong
+/*Return the lowest index at which a value (second argument) should be inserted into an array (first argument) once it has been sorted. 
+The returned value should be a number.
+For example, getIndexToIns([1,2,3,4], 1.5) should return 1 because it is greater than 1 (index 0), but less than 2 (index 1).
+Likewise, getIndexToIns([20,3,5], 19) should return 2 because once the array has been sorted
+ it will look like [3,5,20] and 19 is less than 20 (index 2) and greater than 5 (index 1).*/
+function getIndexToIns(arr, num) {
+    // Find my place in this sorted array
+    if (!arr.length) {
+        return 0;
+    }
+    arr.sort(function (a, b) { return a - b });
+
+    for (var i = 0; i < arr.length; i++) {
+
+        if (arr[i] == num) {
+            return i;
+        }
+        if (arr[i] > num) {
+            return i;
+        }
+    }
+    return arr.length;
+
+}
+getIndexToIns([40, 60], 50);
+
+//-----------------------------------------------------------------
+//16
+//Mutations
+/*Return true if the string in the first element of the array contains all of the letters of the string in the second element of the array.
+For example, ["hello", "Hello"], should return true because all of the letters in the second string are present in the first, ignoring case.
+The arguments ["hello", "hey"] should return false because the string "hello" does not contain a "y".*/
+function mutation(arr) {
+    arr[0] = arr[0].toLowerCase();
+    arr[1] = arr[1].toLowerCase();
+    if (arr[0] == arr[1]) {
+        return true;
+    }
+    var arr1 = arr[0].split('');
+    var arr2 = arr[1].split('');
+    for (var i = 0; i < arr2.length; i++) {
+        if (arr1.indexOf(arr2[i]) == -1) {
+            return false
+        }
+    }
+    return true;
+}
+mutation(["hello", "Hello"]);
+
+//-----------------------------------------------------------------
+//17
+//Chunky Monkey
+//Write a function that splits an array (first argument) into groups the length of size (second argument) and returns them as a two-dimensional array.
+function chunkArrayInGroups(arr, size) {
+    // Break it up.
+    var newarr = [];
+    for (var i = 0; i < arr.length; i += size) {
+        newarr.push(arr.slice(i, i + size));
+    }
+    return newarr;
+}
+
+chunkArrayInGroups(["a", "b", "c", "d", "e"], 2);
