@@ -1,1 +1,1 @@
-### Frecodecame Javascript Basic Algorithm Scripting Solutions
+### Frecodecamp Javascript Basic Algorithm Scripting Solutions
